@@ -31,26 +31,36 @@ int main (int argc, char *argv[]) {
 }
 
 char *removeExtension(const char *filename) {
+
+  fprintf(stdout, "INFO: removeExtension on filename=%s\n", filename);
+
   size_t length = strlen(filename);
   char *basename;
   strcpy (basename, filename);
-  while (basename[length-1] != '.' && length>0) {
+  while (length>0 && basename[length-1] != '.') {
     basename[length-1] = '\0';
     length--;
   }
-  fprintf(stdout, "INFO: Returning basename=%s", basename);
+  fprintf(stdout, "INFO: Returning basename=%s\n", basename);
   return basename;
 }
 
 bool analyzeFingerprintData(const char *filename) {
+
+  fprintf(stdout, "INFO: analyzeFingerprintData in filename=%s\n", filename);
+  return 1;
   
   FILE *inputFile;
   FILE *outputFile;
 
+
   char *basename = removeExtension(filename);
+  
+  fprintf(stdout, "INFO: basename = %s\n", basename);
+
   char *outputFilename = strcat(basename, ".out");
   
-  fprintf(stdout, "INFO: Output filename=%s", outputFilename);
+  fprintf(stdout, "INFO: Output filename=%s\n", outputFilename);
 
   return 0;
 }
