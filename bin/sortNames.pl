@@ -26,5 +26,5 @@ while (<>) {
 my @sortedLastNames = sort {lc $a cmp lc $b} @lastNames;
 
 foreach my $sortedLastName (@sortedLastNames) {
-    print "$firstNameForLastName{$sortedLastName} $sortedLastName\n";
+    print qq/"$firstNameForLastName{$sortedLastName} $sortedLastName"\n/;
 }
