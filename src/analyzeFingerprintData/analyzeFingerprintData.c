@@ -35,11 +35,19 @@ char *removeExtension(const char *filename) {
   fprintf(stdout, "INFO: removeExtension on filename=%s\n", filename);
 
   size_t length = strlen(filename);
-  char *basename;
-  strcpy (basename, filename);
+  fprintf(stdout, "INFO: length = %zu\n", length);
+  char *basename = strdup(filename);
+  //char* basename = (char*)malloc(sizeof(char) * length);
+  //  strcpy (basename, filename); 
+
+  fprintf(stdout, "INFO: strdup done\n");
   while (length>0 && basename[length-1] != '.') {
+    fprintf(stdout, "INFO: basename=%s\n", basename);
     basename[length-1] = '\0';
     length--;
+  }
+  if (length>0) { // remove last '.'
+    basename[length-1] = '\0';
   }
   fprintf(stdout, "INFO: Returning basename=%s\n", basename);
   return basename;
@@ -48,7 +56,6 @@ char *removeExtension(const char *filename) {
 bool analyzeFingerprintData(const char *filename) {
 
   fprintf(stdout, "INFO: analyzeFingerprintData in filename=%s\n", filename);
-  return 1;
   
   FILE *inputFile;
   FILE *outputFile;
